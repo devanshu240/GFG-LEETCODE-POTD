@@ -1,0 +1,28 @@
+//<------------romnan to integer------------->
+class Solution {
+  public:
+    int romanToDecimal(string &str) {
+        // code here
+        int n = str.length();
+        unordered_map<char,int> mm;
+        mm['I']=1;
+        mm['V']=5;
+        mm['X']=10;
+        mm['L']=50;
+        mm['C']=100;
+        mm['D']=500;
+        mm['M']=1000;
+        int res= mm[str[n-1]];
+        for(int i=n-2;i>=0;i--){
+           int curr = mm[str[i]];
+           int last = mm[str[i+1]];
+           if(curr<last){
+               res=res-curr;
+           }
+           else{
+               res=res+curr;
+           }
+        }
+        return res;
+    }
+};
